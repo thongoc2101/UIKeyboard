@@ -37,7 +37,9 @@ class ViewController: UIViewController {
         let userInfo: [NSObject : AnyObject] = sender.userInfo! as [NSObject : AnyObject]
         // 2
         let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
-        let offset: CGSize = (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size
+        
+        let offset: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
+        
         // 3
         if keyboardSize.height == offset.height {
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
@@ -52,7 +54,9 @@ class ViewController: UIViewController {
     
     func keyboardWillHide(sender: NSNotification) {
         let _: [NSObject : AnyObject] = sender.userInfo! as [NSObject : AnyObject]
+        
         let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
+        
         self.view.frame.origin.y += keyboardSize.height
     }
     
